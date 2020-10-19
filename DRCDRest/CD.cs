@@ -21,6 +21,18 @@ namespace DRCDRest
             set { _ID = value; }
         }
 
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
+        }
 
+        public string Artist
+        {
+            get { return _artist; }
+            set { _artist = value; }
+        }
+
+        
     }
 }
