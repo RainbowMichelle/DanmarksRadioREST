@@ -9,36 +9,45 @@ namespace DRCDRest.Controllers.Tests
     [TestClass()]
     public class CDsControllerTests
     {
-        [TestMethod()]
-        public void GetTest()
-        {
+        private CDsController cntr = null;
 
-            Assert.Fail();
+        [TestInitialize]
+        public void Init()
+        {
+            cntr = new CDsController();
         }
 
         [TestMethod()]
-        public void GetTest1()
+        public void GetAllTest()
         {
-            Assert.Fail();
+
+            List<CD> cder = new List<CD>(cntr.Get());
+            Assert.AreEqual(5, cder.Count);
         }
 
-        [TestMethod()]
-        public void PostTest()
-        {
-            Assert.Fail();
-        }
+        //[TestMethod()]
+        //public void GetTest1()
+        //{
+        //    Assert.Fail();
+        //}
 
-        [TestMethod()]
-        public void PutTest()
-        {
-            Assert.Fail();
-        }
+        //[TestMethod()]
+        //public void PostTest()
+        //{
+        //    Assert.Fail();
+        //}
 
-        [TestMethod()]
-        public void DeleteTest()
-        {
-            Assert.Fail();
-        }
+        //[TestMethod()]
+        //public void PutTest()
+        //{
+        //    Assert.Fail();
+        //}
+
+        //[TestMethod()]
+        //public void DeleteTest()
+        //{
+        //    Assert.Fail();
+        //}
     }
 }
 
