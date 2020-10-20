@@ -52,9 +52,9 @@ namespace DRCDRest.Controllers.Tests
     }
 }
 
-namespace DRCDRestTests.Controllers
-{
-    class CDsControllerTests
-    {
-    }
-}
+//namespace DRCDRestTests.Controllers
+//{
+//    class CDsControllerTests
+//    {
+//    }
+//}

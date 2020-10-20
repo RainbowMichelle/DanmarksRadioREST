@@ -12,7 +12,7 @@ namespace DRCDRest.Controllers
     [ApiController]
     public class CDsController : ControllerBase
     {
-        public static List<CD> cder = new List<CD>()
+        private static List<CD> cder = new List<CD>()
         {
             new CD(1,"xx","yy",10.0, 5, 2000),
             new CD(2,"x","y",10.5, 7, 2032),
