@@ -21,9 +21,9 @@ namespace DRCDRest.Controllers.Tests
         [TestMethod()]
         public void GetAllTest()
         {
-
-            List<CD> cder = new List<CD>(cntr.Get());
+            List<CD> cder = new List<CD>(cntr.GetAll());
             Assert.AreEqual(5, cder.Count);
+            Assert.AreNotEqual(6, cder.Count);
         }
 
         //[TestMethod()]
