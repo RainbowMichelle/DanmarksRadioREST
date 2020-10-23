@@ -14,11 +14,11 @@ namespace DRCDRest.Controllers
     {
         private static List<CD> cder = new List<CD>()
         {
-            new CD(1,"xx","yy",10.0, 5, 2000),
-            new CD(2,"x","y",10.5, 7, 2032),
-            new CD(3,"xxx","yyy",13.0, 2, 2120),
-            new CD(4,"xxxx","yyyy",8.0, 1, 2003),
-            new CD(5,"xxxxx","yyyyy",17.0, 6, 2043),
+            new CD(1,"xx","jon",10.0, 5, 2000),
+            new CD(2,"xy","Chris",10.5, 7, 2032),
+            new CD(3,"xxx","Eva",13.0, 2, 2120),
+            new CD(4,"xxxx","Bellion",8.0, 1, 2003),
+            new CD(5,"xxxxx","Urf",17.0, 6, 2043),
         };
 
         // GET: api/<CDsController>
@@ -32,6 +32,13 @@ namespace DRCDRest.Controllers
             return cder;
 
 
+        }
+        // GET: api/CD/Artist/....
+        [HttpGet]
+        [Route("Artist/{substring}")]
+        public IEnumerable<CD> GetArtistSub(String substring)
+        {
+            return cder.FindAll(c => c.Artist.Contains(substring));
         }
 
         // GET api/<CDsController>/5
