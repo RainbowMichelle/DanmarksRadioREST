@@ -16,8 +16,8 @@ namespace UnitTestProject
         [ClassInitialize]
         public static void Setup(TestContext context)
         {
-           // _driver = new FirefoxDriver(DriverDirectory); // Sætter din driver til at være den du bruger, i dette tilfælde firefox
-            _driver = new ChromeDriver(DriverDirectory); // Chrome
+           // _driver = new FirefoxDriver(DriverDirectory); // Sætter din driver til at være den du bruger, i dette tilfælde firefox. Langsom test
+            _driver = new ChromeDriver(DriverDirectory); // Chrome. Den er hurtig til at lave test
         }
 
         [ClassCleanup]
