@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRCDRest", "DRCDRest\DRCDRest.csproj", "{D78A7ABF-B8A9-4C90-97B2-E9098B40A9B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRCDRestTests", "DRCDRestTests\DRCDRestTests.csproj", "{26B8340C-0BE8-4305-AAD7-D79F051AF2BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRCDRestTests", "DRCDRestTests\DRCDRestTests.csproj", "{26B8340C-0BE8-4305-AAD7-D79F051AF2BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{DF0C1BFF-CF6C-41CC-A811-E27F7EB8EA54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{26B8340C-0BE8-4305-AAD7-D79F051AF2BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26B8340C-0BE8-4305-AAD7-D79F051AF2BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26B8340C-0BE8-4305-AAD7-D79F051AF2BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF0C1BFF-CF6C-41CC-A811-E27F7EB8EA54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF0C1BFF-CF6C-41CC-A811-E27F7EB8EA54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF0C1BFF-CF6C-41CC-A811-E27F7EB8EA54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF0C1BFF-CF6C-41CC-A811-E27F7EB8EA54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
