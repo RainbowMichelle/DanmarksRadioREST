@@ -26,6 +26,14 @@ namespace DRCDRest.Controllers.Tests
             Assert.AreNotEqual(6, cder.Count);
         }
 
+        [TestMethod()]
+        public void GetArtistSubTest()
+        {
+            string _substring = "jon";
+            List <CD> _cder = new List<CD>((IEnumerable<CD>)cntr.GetArtistSub(_substring));
+            Assert.AreEqual(2, _cder.Count);
+            Assert.AreNotEqual(4, _cder.Count);
+        }
         //[TestMethod()]
         //public void GetTest1()
         //{

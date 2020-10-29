@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DRCDRest.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
@@ -60,6 +61,90 @@ namespace DRCDRest.Controllers
                 return Ok(cder.FindAll(c => c.Title.ToLower().Contains(_substring.ToLower())));
             }
             return NotFound($"der er ikke nogen CDér med titel {_substring}");
+        }
+
+        [HttpGet]
+        [Route("Duration/{_subint}")]
+        [ProducesResponseType(200)] //når der er en CD med substring
+        [ProducesResponseType(404)] //når søgning ikke matcher nogen duration
+
+        public IActionResult GetFromDuration(double _subint) //brug subint til at søge i duration værdier
+        {
+            if (cder.Exists(c => c.Duration == _subint)) //se om duration matcher søgning
+            {
+                return Ok(cder.FindAll(c => c.Duration == _subint)); //returner alle Cder med indtastet duration 
+            }
+            return NotFound($"der er ikke nogen CDér med duration: {_subint}"); //returner søgeværdi i fejlkode ved 404 not found
+        }
+
+        [HttpGet]
+        [Route("Publication/{_subint}")]
+        [ProducesResponseType(200)] //når der er en CD med substring
+        [ProducesResponseType(404)] //når søgning ikke matcher noget publication år
+
+        public IActionResult GetFromPublication(int _subint) //brug subint til at søge i publication værdier
+        {
+            if (cder.Exists(c => c.YearOfPublication == _subint)) //se om publication matcher søgning
+            {
+                return Ok(cder.FindAll(c => c.YearOfPublication == _subint)); //returner alle Cder med indtastet publication år 
+            }
+            return NotFound($"der er ikke nogen CDér udgivet i år: {_subint}"); //returner søgeværdi i fejlkode ved 404 not found
+        }
+
+        [HttpGet]
+        [Route("Tracks/{_subint}")]
+        [ProducesResponseType(200)] //når der er en CD med substring
+        [ProducesResponseType(404)] //når søgning ikke matcher nogen NumberOfTracks værdi
+
+        public IActionResult GetFromTracks(int _subint) //brug subint til at søge i NumberOfTracks værdier
+        {
+            if (cder.Exists(c => c.NumberOfTracks == _subint)) //se om NumberOfTracks matcher søgning
+            {
+                return Ok(cder.FindAll(c => c.NumberOfTracks == _subint)); //returner alle Cder med indtastet nummer af tracks år 
+            }
+            return NotFound($"der er ikke nogen CDér med: {_subint} numre på."); //returner søgeværdi i fejlkode ved 404 not found
+        }
+
+        [HttpGet]
+        [Route("Time/Search")]
+        [ProducesResponseType(200)] //når der er en CD med duration der matcher søgning
+        [ProducesResponseType(404)] //når der ikke er en CD med duration der matcher søgning
+
+        public IActionResult GetFromDurationQuerry([FromQuery] QuerryItemDuration item) //brug querry resultater til at søge i Duration værdier.
+        {
+            if (cder.Exists(c => c.Duration > item.DurationLower && c.Duration < item.DurationHigher)) //se om der er en CD med en duration højere end DurationLower og lavere end DurationHigher.
+            {
+                return Ok(cder.FindAll(c => c.Duration > item.DurationLower && c.Duration < item.DurationHigher)); //returner alle Cder med indtastet nummer af tracks år 
+            }
+            return NotFound($"der er ikke nogen CDér med duration højere end: {item.DurationLower}, og lavere end: {item.DurationHigher}."); //returner søgeværdi i fejlkode ved 404 not found
+        }
+
+        [HttpGet]
+        [Route("Number/Search")]
+        [ProducesResponseType(200)] 
+        [ProducesResponseType(404)] 
+
+        public IActionResult GetFromTracksQuerry([FromQuery] QuerryItemTracks item) 
+        {
+            if (cder.Exists(c => c.NumberOfTracks > item.TracksLower && c.NumberOfTracks < item.TracksHigher)) 
+            {
+                return Ok(cder.FindAll(c => c.NumberOfTracks > item.TracksLower && c.NumberOfTracks < item.TracksHigher)); 
+            }
+            return NotFound($"der er ikke nogen CDér med Antal tracks mellem: {item.TracksLower}, og: {item.TracksHigher}."); 
+        }
+
+        [HttpGet]
+        [Route("Year/Search")]
+        [ProducesResponseType(200)] 
+        [ProducesResponseType(404)] 
+
+        public IActionResult GetFromYearQuerry([FromQuery] QuerryItemYear item) 
+        {
+            if (cder.Exists(c => c.YearOfPublication > item.YearLower && c.YearOfPublication < item.YearHigher)) 
+            {
+                return Ok(cder.FindAll(c => c.YearOfPublication > item.YearLower && c.YearOfPublication < item.YearHigher)); 
+            }
+            return NotFound($"der er ikke nogen CDér med udgivelsesår mellem: {item.YearLower}, og: {item.YearHigher}.");
         }
         // GET api/<CDsController>/5
         //[HttpGet("{id}")]
