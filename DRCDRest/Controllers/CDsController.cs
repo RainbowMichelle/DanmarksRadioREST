@@ -37,9 +37,15 @@ namespace DRCDRest.Controllers
         // GET: api/CD/Artist/....
         [HttpGet]
         [Route("Artist/{substring}")]
-        public IEnumerable<CD> GetArtistSub(String substring)
+        [ProducesResponseType(200)] //når der er en CD med substring
+        [ProducesResponseType(404)] //når substring ikke matcher nogen artist 
+        public IActionResult GetArtistSub(String _substring)
         {
-            return cder.FindAll(c => c.Artist.Contains(substring));
+            if (cder.Exists( c => c.Artist.ToLower().Contains(_substring.ToLower())))
+            {
+                return Ok(cder.FindAll(c => c.Artist.ToLower().Contains(_substring.ToLower())));
+            }
+            return NotFound($"der er ikke nogen CDér med artist {_substring}");
         }
 
         [HttpGet]
