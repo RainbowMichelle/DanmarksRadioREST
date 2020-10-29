@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -41,6 +42,19 @@ namespace DRCDRest.Controllers
             return cder.FindAll(c => c.Artist.Contains(substring));
         }
 
+        [HttpGet]
+        [Route("Title/{_substring}")]
+        [ProducesResponseType (200)] //når der er en CD med substring
+        [ProducesResponseType (404)] //når substring ikke matcher nogen tittel
+
+        public IActionResult GetFromTitle(string _substring) //brug substring til at søge efter CDér med substring i titlen.
+        {
+            if (cder.Exists(c => c.Title.ToLower().Contains(_substring.ToLower()))) //se om titel (alt med småt) matcher substring (alt med småt)
+            {
+                return Ok(cder.FindAll(c => c.Title.ToLower().Contains(_substring.ToLower())));
+            }
+            return NotFound($"der er ikke nogen CDér med titel {_substring}");
+        }
         // GET api/<CDsController>/5
         //[HttpGet("{id}")]
         //public string Get(int id)
