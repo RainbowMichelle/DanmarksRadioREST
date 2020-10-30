@@ -3,6 +3,7 @@ using DRCDRest.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DRCDRest.Controllers.Tests
 {
@@ -11,6 +12,7 @@ namespace DRCDRest.Controllers.Tests
     {
 
         private CDsController cntr = null;
+        private static List<CD> cder = new List<CD>();
 
         [TestInitialize]
         public void Init()
@@ -21,7 +23,7 @@ namespace DRCDRest.Controllers.Tests
         [TestMethod()]
         public void GetAllTest()
         {
-            List<CD> cder = new List<CD>(cntr.GetAll());
+            cder = new List<CD>(cntr.GetAll());
             Assert.AreEqual(5, cder.Count);
             Assert.AreNotEqual(6, cder.Count);
         }
@@ -29,11 +31,16 @@ namespace DRCDRest.Controllers.Tests
         [TestMethod()]
         public void GetArtistSubTest()
         {
-            string _substring = "jon";
-            List <CD> _cder = new List<CD>((IEnumerable<CD>)cntr.GetArtistSub(_substring));
-            Assert.AreEqual(2, _cder.Count);
-            Assert.AreNotEqual(4, _cder.Count);
+            //arrange
+            string _substring = "Eva";
+            cder = new List<CD>(cntr.GetAll());
+            //act
+            var result = cntr.GetArtistSub(_substring);
+            //assert
+            Assert.AreEqual(cder[2], result);
         }
+
+
         //[TestMethod()]
         //public void GetTest1()
         //{
