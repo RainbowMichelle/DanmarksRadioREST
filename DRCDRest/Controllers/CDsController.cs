@@ -37,7 +37,7 @@ namespace DRCDRest.Controllers
         }
         // GET: api/CD/Artist/....
         [HttpGet]
-        [Route("Artist/{substring}")]
+        [Route("Artist/{_substring}")]
         [ProducesResponseType(200)] //når der er en CD med substring
         [ProducesResponseType(404)] //når substring ikke matcher nogen artist 
         public IActionResult GetArtistSub(String _substring)
